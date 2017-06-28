@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -21,8 +23,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $rut = $request->input('rut');
+        if(\Auth::check()) {
+            $idUsuario=Auth::user()->id;
+        }
+        $usuarioActual=DB::table('users')->find($idUsuario);
+        return view('home', compact('usuarioActual'));
     }
 }

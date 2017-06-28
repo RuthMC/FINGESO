@@ -18,3 +18,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('solicitud','SolicitudController');
+
+Route::resource('user','UserController');
+
+Route::get('/consulta', 'UserController@consulta');
+
+Route::get('/inscripcion', 'UserController@inscripcion');
+
+Route::get('/usuarios', 'UserController@index');
+
+Route::get('/solicitudes', 'SolicitudController@index');
+
+Route::get('/solicitar', 'SolicitudController@create');
