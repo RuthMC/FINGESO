@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Solicitud;
 use Auth;
+use App\User;
 
 class SolicitudController extends Controller
 {
@@ -90,6 +91,11 @@ class SolicitudController extends Controller
      */
     public function destroy($id)
     {
-        Solicitud::destroy($id);
-        return redirect('/solicitudes')->with('message','delete');    }
+        $idTipo=Auth::user()->user_type;
+        if($idTipo == 1){
+            Solicitud::destroy($id);
+            return redirect('/solicitudes')->with('message','delete');   
+        }
+        return redirect('/home')->with('message','error_permisos'); 
+    }
 }

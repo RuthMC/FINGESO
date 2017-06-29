@@ -59,6 +59,7 @@ class UserController extends Controller
         	'email' => $request['email'],
         	'password' => bcrypt($request['password']),
         	'rut' => $request['rut'],
+            'telefono' => $request['telefono'],
         	]);
         return redirect('/home')->with('message', 'store');
     }
@@ -94,13 +95,19 @@ class UserController extends Controller
      */
     public function update($id, Request $request)
     {
-        $usuario = User::find($id);
-        $usuario->name = $request->name;
-        $usuario->email = $request->email;
-        $usuario->user_type = $request->user_type;
-        $usuario->activo = $request->membresia;
-        $usuario->save();
-        return redirect('/usuarios')->with('message','update');
+    	$idTipo=Auth::user()->user_type;
+        if($idTipo == 1){
+	        $usuario = User::find($id);
+	        $usuario->name = $request->name;
+	        $usuario->email = $request->email;
+	        $usuario->user_type = $request->user_type;
+	        $usuario->activo = $request->membresia;
+	        $usuario->telefono = $request->telefono;
+	        $usuario->metodo_pago = $request->metodo_pago;
+	        $usuario->save();
+	        return redirect('/usuarios')->with('message','update');
+	    }
+	    return redirect('/home')->with('message','error_permisos');
     }
 
     /**
@@ -111,7 +118,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-    	User::destroy($id);
-    	return redirect('/usuarios')->with('message','delete');
+    	$idTipo=Auth::user()->user_type;
+        if($idTipo == 1){
+    		User::destroy($id);
+    		return redirect('/usuarios')->with('message','delete');
+    	}
+    	return redirect('/home')->with('message','error_permisos');
     }
 }

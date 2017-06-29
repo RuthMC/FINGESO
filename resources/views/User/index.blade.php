@@ -25,6 +25,7 @@
             		<th>Correo</th>
                     <th>Tipo de usuario</th>
             		<th>Membresía</th>
+                    <th>Método pago</th>
                     <th>Acciones</th>
             	</thead>
             	@foreach ($usuarios as $user)
@@ -48,6 +49,21 @@
                         Activa
                     @else
                         Inactiva
+                    @endif
+                    </td>
+                    <td>
+                    @if ($user->metodo_pago === 0)
+                        Efectivo
+                    @elseif ($user->metodo_pago === 1)
+                        Cheque
+                    @elseif ($user->metodo_pago === 2)
+                        Tarjeta crédito
+                    @elseif ($user->metodo_pago === 3)
+                        PAC
+                    @elseif ($user->metodo_pago === 3)
+                        Tranferencia electrónica
+                    @elseif ($user->metodo_pago === 3)
+                        Planilla USACH
                     @endif
                     </td>
             		<td><a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning">Editar</a></td>

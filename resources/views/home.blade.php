@@ -6,6 +6,10 @@
 <div class="alert alert-success">
   <strong>¡Usuario Creado!</strong> La inscripción ha sido satisfactoria.
 </div>
+@elseif($message == 'error_permisos')
+<div class="alert alert-danger">
+  <strong>¡Permiso denegado!</strong> No tienes acceso a tal acción.
+</div>
 @endif
 
 @section('content')

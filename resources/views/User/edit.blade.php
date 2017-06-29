@@ -40,6 +40,20 @@
                             </div>
                         </div>
                         <br><br>
+                        <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }}">
+                            <label for="telefono" class="col-md-4 control-label">Telefono</label>
+
+                            <div class="col-md-6">
+                                <input id="telefono" type="text" class="form-control" name="telefono" value="{{ $usuario->telefono }}" required autofocus>
+
+                                @if ($errors->has('telefono'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('telefono') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <br><br>
                         <div class="form-group">
                             <label for="user_type" class="col-md-4 control-label">Tipo de usuario:</label>
 
@@ -61,6 +75,22 @@
                                 <option value="{{ $usuario->activo }}" selected>Seleccione una opción:</option>
                                 <option value="0" >Inactiva</option>
                                 <option value="1" >Activa</option>
+                            </select>
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                            <label for="metodo_pago" class="col-md-4 control-label">Método de pago:</label>
+
+                            <div class="col-xs-5">
+                            <select class="form-control" name="metodo_pago" id="metodo_pago">
+                                <option value="{{ $usuario->metodo_pago }}" selected>Seleccione una opción:</option>
+                                <option value="0" >Efectivo</option>
+                                <option value="1" >Cheque</option>
+                                <option value="2" >Tarjeta crédito</option>
+                                <option value="3" >PAC</option>
+                                <option value="4" >Transferencia electrónica</option>
+                                <option value="5" >Planilla USACH</option>
                             </select>
                             </div>
                         </div>
