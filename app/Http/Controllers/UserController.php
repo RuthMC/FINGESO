@@ -53,15 +53,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
-        User::create([
-        	'name' => $request['nombres'],
-        	'email' => $request['email'],
-        	'password' => bcrypt($request['password']),
-        	'rut' => $request['rut'],
-            'telefono' => $request['telefono'],
-        	]);
-        return redirect('/home')->with('message', 'store');
+        $idTipo=Auth::user()->user_type;
+        if($idTipo == 1 or $idTipo == 2){
+            User::create([
+            	'name' => $request['nombres'],
+            	'email' => $request['email'],
+            	'password' => bcrypt($request['password']),
+            	'rut' => $request['rut'],
+                'telefono' => $request['telefono'],
+                'metodo_pago' => $request['metodo_pago'],
+            	]);
+            return redirect('/home')->with('message', 'store');
+        }
+        return redirect('/home')->with('message','error_permisos');
     }
 
     /**

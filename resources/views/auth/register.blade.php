@@ -62,7 +62,21 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="metodo_pago" class="col-md-4 control-label">Método de pago:</label>
 
+                            <div class="col-xs-5">
+                            <select class="form-control" name="metodo_pago" id="metodo_pago">
+                                <option value="" selected disabled>Seleccione una opción:</option>
+                                <option value="0" >Efectivo</option>
+                                <option value="1" >Cheque</option>
+                                <option value="2" >Tarjeta crédito</option>
+                                <option value="3" >PAC</option>
+                                <option value="4" >Transferencia electrónica</option>
+                                <option value="5" >Planilla USACH</option>
+                            </select>
+                            </div>
+                        </div>
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Contraseña</label>
 

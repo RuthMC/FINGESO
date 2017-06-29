@@ -23,6 +23,7 @@
                 <div class="panel-heading">Bienvenido {{ $usuarioActual->name }}</div>
             </div>
             <a href="{{ url('/consulta') }}" class="btn btn-primary">Consultar membresía</a>
+                <a href="{{ url('/solicitar') }}" class="btn btn-success">Añadir solicitud</a><br>
         </div>
     </div>
 </div>
@@ -36,6 +37,7 @@
                 </div>
                 <a href="{{ url('/consulta') }}" class="btn btn-primary">Consultar membresía</a>
                 <a href="{{ url('/inscripcion') }}" class="btn btn-success">Inscribir socio</a>
+                <a href="{{ url('/solicitar') }}" class="btn btn-primary">Añadir solicitud</a><br>
             </div>
         </div>
     </div>
